@@ -28,7 +28,7 @@ export function AuthLockScreen({
       await db.delete();
       toast.success("All data wiped. Reloading...");
       window.location.reload();
-    } catch (err) {
+    } catch {
       toast.error("Failed to reset database.");
     }
   };

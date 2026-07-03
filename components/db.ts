@@ -11,8 +11,8 @@ export interface JournalEntry {
 export interface LocalUser {
   id?: number;
   name: string;
-  passwordHash: string; // Used for client-side Web Crypto verification
-  salt: string; // Unique cryptographic salt per user
+  passwordHash?: string; // Used for client-side Web Crypto verification
+  salt?: string; // Unique cryptographic salt per user
   createdAt: string;
 }
 

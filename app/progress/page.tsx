@@ -11,17 +11,23 @@ export default function ProgressPage() {
 
   // Fetch history strictly for the currently signed-in profile
   useEffect(() => {
-    if (activeUser?.id) {
-      db.history
-        .where("userId")
-        .equals(activeUser.id)
-        .reverse()
-        .toArray()
-        .then(setHistory);
-    } else {
-      setHistory([]);
-    }
-  }, [activeUser]);
+    if (!activeUser?.id) return;
+
+    let cancelled = false;
+
+    db.history
+      .where("userId")
+      .equals(activeUser.id)
+      .reverse()
+      .toArray()
+      .then((results) => {
+        if (!cancelled) setHistory(results);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeUser?.id]);
 
   return (
     <div className="space-y-6 max-w-xl mx-auto">
@@ -56,7 +62,7 @@ export default function ProgressPage() {
           <div className="space-y-3">
             {history.length === 0 ? (
               <div className="bg-white border border-slate-200 rounded-xl p-8 text-center text-xs text-slate-400">
-                You haven't recorded any session metrics yet.
+                You haven&#39;t recorded any session metrics yet.
               </div>
             ) : (
               history.map((log) => (

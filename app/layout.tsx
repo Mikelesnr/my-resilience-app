@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import ClientShellWrapper from "@/components/auth/ClientShellWrapper";
 import "./globals.css";
+import RegisterSW from "@/components/RegisterSW";
+import { AppHeader } from "@/components/AppHeader";
 
 const serifFont = Instrument_Serif({
   variable: "--font-serif",
@@ -31,6 +33,8 @@ export default function RootLayout({
       className={`${serifFont.variable} ${sansFont.variable} h-full antialiased`}
     >
       <body className="h-full bg-slate-50 text-slate-900 font-sans">
+        <AppHeader />
+        <RegisterSW />
         <ClientShellWrapper>{children}</ClientShellWrapper>
       </body>
     </html>
