@@ -64,11 +64,28 @@ export default function Home() {
             href: "/journal",
             icon: BookOpen,
             title: "Appreciation Journal",
-            color: "teal",
+            color: "rose",
             desc: "Reflect on positive moments and daily gratitude.",
           },
         ].map((item) => {
           const Icon = item.icon;
+
+          /* 1. Define the color map */
+          const colorMap: Record<string, string> = {
+            teal: "bg-teal-50 text-teal-600",
+            purple: "bg-purple-50 text-purple-600",
+            amber: "bg-amber-50 text-amber-600",
+            indigo: "bg-indigo-50 text-indigo-600",
+            rose: "bg-rose-50 text-rose-600",
+          };
+
+          const buttonColorMap: Record<string, string> = {
+            teal: "bg-teal-600 hover:bg-teal-800",
+            purple: "bg-purple-600 hover:bg-purple-700",
+            amber: "bg-amber-600 hover:bg-amber-700",
+            indigo: "bg-indigo-600 hover:bg-indigo-700",
+            rose: "bg-rose-600 hover:bg-rose-700",
+          };
           return (
             <div
               key={item.href}
@@ -76,7 +93,7 @@ export default function Home() {
             >
               <div className="mb-4">
                 <div
-                  className={`w-10 h-10 bg-${item.color}-50 rounded-lg flex items-center justify-center text-${item.color}-600 mb-3`}
+                  className={`w-10 h-10 ${colorMap[item.color]} rounded-lg flex items-center justify-center mb-3`}
                 >
                   <Icon className="w-5 h-5" />
                 </div>
@@ -89,7 +106,7 @@ export default function Home() {
               </div>
               <Link
                 href={item.href}
-                className={`block text-center bg-${item.color}-600 text-white py-2 rounded-lg font-medium hover:bg-${item.color}-700 transition text-xs`}
+                className={`block text-center ${buttonColorMap[item.color]} text-white py-2 rounded-lg font-medium hover:${buttonColorMap[item.color].replace("bg-", "hover:bg-")} transition text-xs`}
               >
                 {item.href === "/puzzles"
                   ? "Play Games"
