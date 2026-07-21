@@ -4,6 +4,7 @@ import ClientShellWrapper from "@/components/auth/ClientShellWrapper";
 import "./globals.css";
 import RegisterSW from "@/components/RegisterSW";
 import { AppHeader } from "@/components/AppHeader";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const serifFont = Instrument_Serif({
   variable: "--font-serif",
@@ -33,6 +34,7 @@ export default function RootLayout({
       className={`${serifFont.variable} ${sansFont.variable} h-full antialiased`}
     >
       <body className="h-full bg-slate-50 text-slate-900 font-sans">
+        <ServiceWorkerRegister />
         <AppHeader />
         <RegisterSW />
         <ClientShellWrapper>{children}</ClientShellWrapper>
